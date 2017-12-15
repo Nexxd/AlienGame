@@ -1,11 +1,10 @@
 
 /**
- * This class represents the aliens on the map. It contains their health and their coordinates.
+ * This abstract class has methods for the tokens health and coordinates.
  *
  * @author Jan Schneider 4919081 Group 8b
  */
-
- public class Tokens {
+ public abstract class Tokens {
      private int health;
      private int xCoordinate;
      private int yCoordinate;
@@ -14,18 +13,18 @@
          return health;
      }
      public int getxCoordinate() {
-         return xCoordinate;
+          return xCoordinate;
      }
      public int getyCoordinate() {
-         return yCoordinate;
+     return yCoordinate;
      }
      public void sethealth(int health) {
          this.health = health;
      }
      public void setxCoordinate(int xCoordinate) {
-         this.xCoordinate = xCoordinate;
+        this.xCoordinate = xCoordinate;
      }
      public void setyCoordinate(int yCoordinate) {
-         this.yCoordinate = yCoordinate;
+          this.yCoordinate = yCoordinate;
      }
  }

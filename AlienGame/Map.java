@@ -4,21 +4,52 @@
  * @author Jan Schneider 4919081 Group 8b
  */
 public class Map {
-    char[][] gameBoard;
-    Player player;
-    Alien[] aliens;
+
+    private char[][] gameBoard;
+    private Alien[] aliens;
+    private Player player;
+    private int playerToken;
+
+    public char[][] getgameBoard() {
+        return gameBoard;
+    }
+    public Alien[] getaliens() {
+         return aliens;
+    }
+    public Player getplayer() {
+        return player;
+    }
+    public int getplayerToken() {
+        return playerToken;
+    }
+    public void setgameBoard(char value, int x, int y) {
+        this.gameBoard[x][y] = value;
+    }
+    public void setaliens(Alien[] aliens) {
+        this.aliens = aliens;
+    }
+    public void setplayer(Player player) {
+        this.player = player;
+    }
+    //public void setplayerToken() {
+    //    this.playerToken = playerToken;
+    //}
 
     /**
      * This methods initializes the gameboard used in this program.
      * @param horizontal the width as integer.
      * @param vertical the height as integer.
      * @param numberAliens the number of aliens as integer.
+     * @param playerToken the token the player chooses at the beginning of the game.
      */
-    public Map(int horizontal, int vertical, int numberAliens) {
+
+    public Map(int horizontal, int vertical, int numberAliens, int playerToken) {
+
         this.aliens = new Alien[numberAliens];
+        this.playerToken = playerToken;
         this.gameBoard = new char[horizontal][vertical];
         this.gameBoard = fillspace(gameBoard);
-        this.gameBoard = fillunits(numberAliens, horizontal, vertical);
+        this.gameBoard = fillunits(numberAliens, horizontal, vertical, playerToken);
     }
 
    /**
@@ -26,9 +57,10 @@ public class Map {
     * @param horizontal the width as integer.
     * @param vertical the height as integer.
     * @param numberAliens the number of aliens as integer.
+    * @param playerToken the token the player chooses at the beginning of the game.
     * @return Char[][] containing the aliens and the player.
     */
-    char[][] fillunits(int numberAliens, int horizontal, int vertical) {
+    char[][] fillunits(int numberAliens, int horizontal, int vertical, int playerToken) {
         for (int n = 0; n < numberAliens + 1; n++) {
             int x = (int) (Math.random() * horizontal);
             int y = (int) (Math.random() * vertical);
@@ -38,7 +70,13 @@ public class Map {
             }
             if (n == 0) {
                 gameBoard[x][y] = 'P';
-                player = new Player(x, y);
+                if (playerToken == 0) {
+                    player = new Grunt(x, y);
+                } else if (playerToken == 1) {
+                    player = new Scout(x, y);
+                } else if (playerToken == 2) {
+                    player = new Grenadier(x, y);
+                }
             } else {
                 gameBoard[x][y] = 'A';
                 Alien alien = new Alien(x, y);
@@ -94,4 +132,5 @@ public class Map {
         }
         return gameBoard;
     }
+
 }

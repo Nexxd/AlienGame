@@ -24,7 +24,7 @@ public class Alien extends Tokens {
      * @param gameBoard Char containing the gameboard.
      */
     public void attack(Player player, Map gameBoard) {
-        if (distance(player) < (int) (Math.random() * (gameBoard.gameBoard.length + gameBoard.gameBoard[0].length)) + 1) {
+        if (distance(player) < (int) (Math.random() * (gameBoard.getgameBoard().length + gameBoard.getgameBoard()[0].length)) + 1) {
             player.sethealth(player.gethealth() - 1);
             System.out.println("The alien (" + getyCoordinate() + "," + getxCoordinate() + ") hit the player.");
         } else {
